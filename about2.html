@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<head>
+  <script type="text/javascript" src="js/jquery.js"></script>
+  <link rel="stylesheet" type="text/css" href="about2.css">
+  <link href='http://fonts.googleapis.com/css?family=Fira+Sans:400,500italic' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+  <header>
+    <img src="http://imgur.com/Iml7ZIV.jpg">
+    <h1>About Shawn!</h1>
+    <ul>
+    </ul>
+  </header>
+  <article>
+    <h2>Running</h2>
+    <p>It's my biggest passion. If you look right below I had the honor of running around Mt.Rainer! It was AMAZING!</p>
+    <img src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-xpf1/t31.0-8/331656_3786478618993_445115124_o.jpg">
+  <article>
+  	<h3> Learning </h3>
+  	<p> I love to learn! One example of me learning is this "about me" website. I'm taking all the knowledge I gathered from dash site and transfering it over here! </p>
+  </article>
+  <article>
+  	<h4> Contact me! </h4>
+    <p> Phone: 509-385-9511 </p>
+   </article>	
+<script>
+$(document).ready(function() {
+
+	
+	var speed = 5000;
+	var run = setInterval('rotate()', speed);	
+	
+	
+	var item_width = $('#slides li').outerWidth(); 
+	var left_value = item_width * (-1); 
+        
+    
+	$('#slides li:first').before($('#slides li:last'));
+	
+	 
+	$('#slides ul').css({'left' : left_value});
+
+    
+	$('#prev').click(function() {
+
+		           
+		var left_indent = parseInt($('#slides ul').css('left')) + item_width;
+
+		            
+		$('#slides ul:not(:animated)').animate({'left' : left_indent}, 200,function(){    
+
+                       	
+			$('#slides li:first').before($('#slides li:last'));           
+
+			
+			$('#slides ul').css({'left' : left_value});
+		
+		});
+
+		            
+		return false;
+            
+	});
+
+ 
+    
+	$('#next').click(function() {
+		
+		
+		var left_indent = parseInt($('#slides ul').css('left')) - item_width;
+		
+		
+		$('#slides ul:not(:animated)').animate({'left' : left_indent}, 200, function () {
+            
+            
+			$('#slides li:last').after($('#slides li:first'));                 	
+			
+			
+			$('#slides ul').css({'left' : left_value});
+		
+		});
+		         
+		
+		return false;
+		
+	});        
+	
+	
+	$('#slides').hover(
+		
+		function() {
+			clearInterval(run);
+		}, 
+		function() {
+			run = setInterval('rotate()', speed);	
+		}
+	); 
+        
+});
+
+//timer 
+function rotate() {
+	$('#next').click();
+}       
+</script>
+<div id="carousel">
+
+	<div id="buttons">
+		<a href="#" id="prev">prev</a>
+		<a href="#" id="next">next</a>
+		<div class="clear"></div>
+	</div>
+	
+	<div class="clear"></div>
+
+	<div id="slides"> 
+		<ul>
+			<li><img src="https://fbcdn-sphotos-c-a.akamaihd.net/hphotos-ak-xpa1/t1.0-9/10307240_10202675930517912_5193243413323846677_n.jpg" width="240" height="240" alt="Slide 1"/></li>
+			<li><img src="https://scontent-a-pao.xx.fbcdn.net/hphotos-xpa1/t1.0-9/1544475_10201802695127573_1254697511_n.jpg" width="240" height="240" alt="Slide 2"/></li>
+			<li><img src="https://fbcdn-sphotos-c-a.akamaihd.net/hphotos-ak-xpf1/v/t1.0-9/10524588_10203626877006507_6868110176271794864_n.jpg?oh=8786916dea0a91da564f0994e2f7e362&oe=544F34E5&__gda__=1414824858_3ac6af2167634341b713f83d5be0d77f" alt="Slide 3"/></li>
+		</ul>
+		<div class="clear"></div>
+	</div>
+</body>
